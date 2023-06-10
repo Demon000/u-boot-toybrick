@@ -1674,7 +1674,8 @@ uint32_t trusty_read_toybrick_SnMacAc(uint8_t *data, uint32_t size)
 						TEEC_NONE,
 						TEEC_NONE);
 	/*0 nand or emmc "security" partition , 1 rpmb*/
-	if (dev_desc->if_type == IF_TYPE_MMC && dev_desc->devnum == 0)
+	if (dev_desc->if_type == IF_TYPE_MMC && (dev_desc->devnum == 0 ||
+			dev_desc->devnum == 1))
 		TeecOperation.params[0].value.a = 1;
 	else
 		TeecOperation.params[0].value.a = 0;
